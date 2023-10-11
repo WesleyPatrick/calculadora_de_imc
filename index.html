@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de IMC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>Calculadora de IMC</h1>
+    </div>
+
+    <div class="form">
+      <form action="#">
+        <div class="input-group">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome">
+        </div>
+        <div class="input-group">
+          <label for="peso">Peso (kg):</label>
+          <input type="number" id="peso" name="peso">
+        </div>
+        <div class="input-group">
+          <label for="altura">Altura (m):</label>
+          <input type="number" id="altura" name="altura">
+        </div>
+        <input type="submit" value="Calcular">
+      </form>
+    </div>
+
+    <div class="resultado"></div>
+
+  </div>
+
+  <script>
+    function calcularIMC() {
+
+    const nome = document.querySelector("#nome").value;
+    const peso = document.querySelector("#peso").value;
+    const altura = document.querySelector("#altura").value;
+  
+
+    const imc = peso / altura ** 2;
+  
+
+    const resultado = document.querySelector(".resultado");
+    resultado.innerHTML = `
+      <h2>Resultado</h2>
+      <p>Nome: ${nome}</p>
+      <p>IMC: ${imc.toFixed(2)}</p>
+      <p>
+        Classificação:
+        ${imc < 18.5 ? "Abaixo do peso" : imc >= 25 ? "Acima do peso" : "Normal"}
+      </p>
+    `;
+  }
+  
+  document.querySelector("form").addEventListener("submit", calcularIMC);
+  </script>
+</body>
+</html>
